@@ -60,7 +60,9 @@ namespace MathLib
         }
         return result;
     }
- 
+
+	
+	
     // Function to check whether value is prime
     bool isPrime(int n);
 
@@ -69,4 +71,6 @@ namespace MathLib
 
     // Function to search GCD
     int GCD(int a, int b);
+
+	
 }
