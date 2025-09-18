@@ -77,3 +77,27 @@ TEST_F(MathLibTestFixture, GreatestCommonDivider)
 {
     EXPECT_EQ(MathLib::GCD(10, 6), 2);
 }
+TEST(MathLibTestFixture, Trapez_ZeroFunction) {
+    auto f = [](double){ return 0.0; };
+    EXPECT_NEAR(trapez(f, 0, 10, 1e-6), 0.0, 1e-9);
+}
+
+TEST(MathLibTestFixture, Trapez_LinearFunction) {
+    auto f = [](double x){ return x; };
+    EXPECT_NEAR(trapez(f, 0, 1, 1e-6), 0.5, 1e-6);
+}
+
+TEST(MathLibTestFixture, Trapez_QuadraticFunction) {
+    auto f = [](double x){ return x*x; };
+    EXPECT_NEAR(trapez(f, 0, 1, 1e-6), 1.0/3.0, 1e-6);
+}
+
+TEST(MathLibTestFixture, Trapez_SinFunction) {
+    auto f = [](double x){ return sin(x); };
+    EXPECT_NEAR(trapez(f, 0, M_PI, 1e-6), 2.0, 1e-6);
+}
+
+TEST(MathLibTestFixture, Trapez_CustomFunction) {
+    double result = trapez(y, 0, 5, 1e-6);
+    EXPECT_NEAR(result, -0.212214, 1e-5);
+}
