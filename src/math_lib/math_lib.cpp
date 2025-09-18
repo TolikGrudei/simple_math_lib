@@ -44,3 +44,25 @@ namespace MathLib
 	}
 }
 
+double trapez(double(*f)(double), double a, double b, double eps)
+{
+    double old_i = 0, new_i = old_i+2*eps;
+    for(unsigned int n = 1; abs(new_i-old_i) > eps; n *= 2)
+    {
+        old_i = new_i;
+        double h = (b-a)/n, s = -(f(a) + f(b))/2;
+        for(int i = 0; i <= n; ++i)
+            s += f(a + i*h);
+        new_i = s*h;
+    }
+    return new_i;
+}
+
+double y(double x) { return sin(x)*cos(x*x); }
+
+int main(int argc, char * argv[])
+{
+    cout << trapez(y,0,5,1e-6) << endl;
+}
+
+
