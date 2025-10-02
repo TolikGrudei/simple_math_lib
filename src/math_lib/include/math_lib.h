@@ -60,6 +60,20 @@ namespace MathLib
         }
         return result;
     }
+	double thirdAngle(double angle1, double angle2)
+    {
+        if (angle1 <= 0 || angle2 <= 0)
+        {
+            throw std::invalid_argument("Angles must be positive.");
+        }
+
+        if (angle1 + angle2 >= 180)
+        {
+            throw std::invalid_argument("Sum of two angles must be less than 180 degrees.");
+        }
+
+        return 180.0 - (angle1 + angle2);
+    }
 
 	
 	
