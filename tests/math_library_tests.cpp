@@ -101,3 +101,23 @@ TEST(MathLibTestFixture, Trapez_CustomFunction) {
     double result = trapez(y, 0, 5, 1e-6);
     EXPECT_NEAR(result, -0.212214, 1e-5);
 }
+TEST_F(MathLibTestFixture, ThirdAngle_Valid)
+{
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(60, 90), 30.0);
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(45, 45), 90.0);
+    EXPECT_DOUBLE_EQ(MathLib::thirdAngle(30, 60), 90.0);
+}
+
+TEST_F(MathLibTestFixture, ThirdAngle_InvalidNegative)
+{
+    EXPECT_THROW(MathLib::thirdAngle(-10, 60), std::invalid_argument);
+    EXPECT_THROW(MathLib::thirdAngle(60, -5), std::invalid_argument);
+    EXPECT_THROW(MathLib::thirdAngle(-10, -20), std::invalid_argument);
+}
+
+TEST_F(MathLibTestFixture, ThirdAngle_InvalidSum)
+{
+    EXPECT_THROW(MathLib::thirdAngle(100, 100), std::invalid_argument);
+    EXPECT_THROW(MathLib::thirdAngle(90, 90), std::invalid_argument);
+    EXPECT_THROW(MathLib::thirdAngle(179, 2), std::invalid_argument);
+}
